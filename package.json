@@ -1,0 +1,29 @@
+{
+  "name": "api-testing",
+  "version": "1.0.0",
+  "description": "api testing using cypress and cucuber",
+  "homepage": "https://github.com/ITQA-Assignmnet/Api-testing#readme",
+  "bugs": {
+    "url": "https://github.com/ITQA-Assignmnet/Api-testing/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ITQA-Assignmnet/Api-testing.git"
+  },
+  "license": "ISC",
+  "author": "Vishwanath",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "np cypress open"
+  },
+  "dependencies": {
+    "api-testing": "file:"
+  },
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^21.0.3",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
+    "@cypress/browserify-preprocessor": "^3.0.2",
+    "cypress": "^13.17.0"
+  }
+}
