@@ -23,6 +23,23 @@ When("I send PUT request with below data:", (dataTable) => {
         Authorization: Cypress.env("authHeader"), // Using the header set by setBasicAuth
       },
       body: data,
+      failOnStatusCode: false,
+    }).then((res) => {
+      response = res;
+    });
+  });
+});
+
+When("I send a PUT request with an empty body", () => {
+  cy.get("@apiEndpoint").then((apiEndpoint) => {
+    cy.request({
+      method: "POST",
+      url: apiEndpoint,
+      headers: {
+        Authorization: Cypress.env("authHeader"),
+      },
+      failOnStatusCode: false, // Prevent Cypress from failing on non-2xx responses
+      body: {},
     }).then((res) => {
       response = res;
     });
@@ -36,7 +53,7 @@ Then("The response should contain a updated book:", function (dataTable) {
 
   if (response.status === 200) {
       // Validate the response contains the expected title and author
-    const expectedId = parseInt(expectedData.id, expectedData.id);
+    const expectedId = parseInt(expectedData.id, 10);
     expect(response.body).to.have.property("id", expectedId);
     expect(response.body).to.have.property("title", expectedData.title);
     expect(response.body).to.have.property("author", expectedData.author);
@@ -47,4 +64,12 @@ Then("The response should contain a updated book:", function (dataTable) {
     // Unexpected response
     throw new Error(`Unexpected status code: ${response.status}`);
   }
+});
+
+Then("The response code should be {int}", (statusCode) => {
+  expect(response.status).to.eq(statusCode);
+});
+
+Then("The response message should be {string}", (message) => {
+  expect(response.body).to.eq(message);
 });
