@@ -20,7 +20,7 @@ When("I send PUT request with below data:", (dataTable) => {
       method: "PUT",
       url: apiEndpoint,
       headers: {
-        Authorization: Cypress.env("authHeader"), // Using the header set by setBasicAuth
+        Authorization: Cypress.env("authHeader"), 
       },
       body: data,
       failOnStatusCode: false,
@@ -38,7 +38,7 @@ When("I send a PUT request with an empty body", () => {
       headers: {
         Authorization: Cypress.env("authHeader"),
       },
-      failOnStatusCode: false, // Prevent Cypress from failing on non-2xx responses
+      failOnStatusCode: false, 
       body: {},
     }).then((res) => {
       response = res;
