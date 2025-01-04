@@ -15,7 +15,10 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "np cypress open"
+    "test": "np cypress open",
+    "cypress:run": "cypress run --env allure=true",
+    "allure:generate": "allure generate \"allure-results\" --clean",
+    "allure:open": "allure open allure-report"
   },
   "dependencies": {
     "api-testing": "file:"
@@ -24,6 +27,8 @@
     "@badeball/cypress-cucumber-preprocessor": "^21.0.3",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
     "@cypress/browserify-preprocessor": "^3.0.2",
+    "@shelex/cypress-allure-plugin": "^2.40.2",
+    "allure-commandline": "^2.32.0",
     "cypress": "^13.17.0"
   }
 }

@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    tools {
+        nodejs "NodeJS" // Use the Node.js installation configured in Jenkins
+    }
+
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Run Cypress Tests') {
+            steps {
+                sh 'npx cypress run --env allure=true' // Enable Allure reporting
+            }
+        }
+
+        stage('Generate Allure Report') {
+            steps {
+                allure([
+                    includeProperties: false,
+                    jdk: '21',
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'allure-results']]
+                ])
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: '**/allure-results/*', allowEmptyArchive: true
+            allure([
+                includeProperties: false,
+                reportBuildPolicy: 'ALWAYS',
+                results: [[path: 'allure-results']]
+            ])
+        }
+    }
+}

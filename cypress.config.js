@@ -4,6 +4,7 @@ const addCucumberPreprocessorPlugin =
   require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin;
 const createEsbuildPlugin =
   require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
+const allureWriter = require("@shelex/cypress-allure-plugin/writer");
 
 module.exports = defineConfig({
   e2e: {
@@ -17,7 +18,7 @@ module.exports = defineConfig({
           plugins: [createEsbuildPlugin(config)],
         })
       );
-
+      allureWriter(on, config);
       // Return updated configuration
       return config;
     },
