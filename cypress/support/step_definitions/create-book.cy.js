@@ -13,6 +13,7 @@ Given("The API endpoint {string} and user role {string}", (endpoint, role) => {
   cy.wrap(endpoint).as("apiEndpoint");
 });
 
+//secnario 2
 When("I send a POST request with the following data:", (dataTable) => {
   const data = dataTable.rowsHash();
   cy.get("@apiEndpoint").then((apiEndpoint) => {
