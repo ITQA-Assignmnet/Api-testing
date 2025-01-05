@@ -13,6 +13,7 @@ Given("The Delete API request {string} and user role {string}", (endpoint, role)
   cy.wrap(endpoint).as("apiEndpoint");
 });
 
+
 When("I send DELETE request", () => {
   cy.get("@apiEndpoint").then((apiEndpoint) => {
     cy.request({
