@@ -62,6 +62,7 @@ Then("The response should contain a updated book:", function (dataTable) {
     expect(response.body).to.equal("Book Already Exists");
   } else {
     // Unexpected response
+    
     throw new Error(`Unexpected status code: ${response.status}`);
   }
 });
